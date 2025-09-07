@@ -14,8 +14,9 @@ CREATE TABLE IF NOT EXISTS users (
 -- Table to store candidate information
 CREATE TABLE IF NOT EXISTS candidates (
     candidate_id INT AUTO_INCREMENT PRIMARY KEY,
-    full_name VARCHAR(100) NOT NULL,             -- Candidate's full name
-    reg_no VARCHAR(50) NOT NULL UNIQUE,          -- Candidate's registration number, must be unique
+    full_name VARCHAR(150) NOT NULL,             -- Candidate's full name
+    reg_no VARCHAR(50) NOT NULL UNIQUE,          -- Candidate's registration number, unique
+    photo_url VARCHAR(255),                      -- Candidate photo path
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP -- Timestamp of candidate registration
 );
 
