@@ -27,10 +27,41 @@
         <nav class="md:w-[15%] hidden md:flex flex-col justify-between">
             <div id="links" class="flex flex-col gap-4 p-4">
                 <div>
-                    <a href="#dashboard" class="block py-2 px-4 rounded hover:font-medium">Dashboard</a>
-                    <a href="#" class="block py-2 px-4 rounded hover:font-medium">Voters</a>
-                    <a href="#" class="block py-2 px-4 rounded hover:font-medium">Candidates</a>
-                    <a href="#" class="block py-2 px-4 rounded hover:font-medium">Votes</a>
+                    <a href="#dashboard" class="block py-2 px-4 rounded hover:font-medium nav-link" data-section="dashboard">Dashboard</a>
+                    <a href="#candidates" class="block py-2 px-4 rounded hover:font-medium nav-link" data-section="candidates">Candidates</a>
+                    <a href="#voters" class="block py-2 px-4 rounded hover:font-medium nav-link" data-section="voters">Voters</a>
+                    <a href="#votes" class="block py-2 px-4 rounded hover:font-medium nav-link" data-section="votes">Votes</a>
+
+                    <script>
+                    document.addEventListener('DOMContentLoaded', function() {
+                        // Section IDs
+                        const sections = ['dashboard', 'voters', 'candidates', 'votes'];
+                        // Create dummy sections if not exist
+                        sections.forEach(id => {
+                            if (!document.getElementById(id)) {
+                                const sec = document.createElement('section');
+                                sec.id = id;
+                                sec.className = 'w-full md:w-[85%] md:p-2 md:overflow-y-auto hidden';
+                                sec.innerHTML = `<div class="p-8 text-xl font-bold">${id.charAt(0).toUpperCase() + id.slice(1)} Section</div>`;
+                                document.querySelector('main').appendChild(sec);
+                            }
+                        });
+                        // Show only dashboard by default
+                        sections.forEach(id => {
+                            document.getElementById(id).style.display = (id === 'dashboard') ? 'block' : 'none';
+                        });
+                        // Navigation click handler
+                        document.querySelectorAll('.nav-link').forEach(link => {
+                            link.addEventListener('click', function(e) {
+                                e.preventDefault();
+                                const target = this.getAttribute('data-section');
+                                sections.forEach(id => {
+                                    document.getElementById(id).style.display = (id === target) ? 'block' : 'none';
+                                });
+                            });
+                        });
+                    });
+                    </script>
                 </div>
             </div>
             <div class="p-4">
@@ -42,6 +73,7 @@
 
 
 
+        <!-- DASHBOARD SECTION -->
         <section id="dashboard" class=" w-full md:w-[85%] md:p-2 md:overflow-y-auto">
             <div class="p-8">
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -180,7 +212,7 @@
                 </div>
 
                 <!-- Candidates Vote Percentage Table -->
-                <div class="bg-white rounded shadow p-6 w-full flex flex-col justify-center items-center">
+                <div class="bg-white rounded shadow p-6 w-full h-full">
                     <h2 class="text-xl font-bold mb-4">Candidates Vote Percentage</h2>
                     <table class="w-full text-left">
                         <thead>
@@ -216,6 +248,12 @@
                 </div>
             </div>
         </section>
+        <!-- CANDIDATES SECTION -->
+         <section id="candidates">
+            hieee
+         </section>
+
+
     </main>
 </body>
-</html>
+</html></table>
