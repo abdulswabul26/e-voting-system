@@ -1,1 +1,0 @@
-<!-- authenticaton functions -->
